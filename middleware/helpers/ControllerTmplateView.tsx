@@ -11,7 +11,6 @@ export type ComponentPropsType = {
 }
 
 type ControllerTemplateProp = {
-    // dbQueryResult: {}[],
     component:React.ComponentType<ComponentPropsType>
 
 }
@@ -36,7 +35,6 @@ const GetUser = async ()=>{
     const dataFromAuth = user.currentUser
     if(snapshots.exists()){
       const dataFromDB = snapshots.data()
-      console.log(dataFromAuth, dataFromDB)
       return {dataFromAuth, dataFromDB}
     }
   }
