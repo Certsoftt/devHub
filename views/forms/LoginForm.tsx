@@ -82,14 +82,14 @@ const LoginForm = () => {
                 {endpoint.current==="/login" && 'LOGIN BELOW'}
             </Typography>
         </Stack>
-        <Paper elevation={4} sx={{width:"80%", height:"auto", textAlign:"center", margin:"auto", marginTop:"30px"}}>
-            <Card>
+        <Paper elevation={4} sx={{width:"90%", height:"auto", textAlign:"center", margin:"auto", marginTop:"30px"}}>
+            <Card id="section">
                 <CardMedia component="img" image={logo} height="150" alt="react logo" sx={{backgroundColor: "#000000"}}/>
                 <FormControl component="form" onSubmit={handleSubmit(onSub)} noValidate>
                     <CardContent>
                         <Grid container rowSpacing={1} columnSpacing={1}>
                             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"30px",paddingLeft:"30px",paddingTop:"30px"}}>
+                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"10px",paddingLeft:"10px",paddingTop:"30px"}}>
                                     <TextField size="small" type="email" {...register("email",{
                                         required:{
                                             value: true,
@@ -106,7 +106,7 @@ const LoginForm = () => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"30px",paddingLeft:"30px"}}>
+                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"10px",paddingLeft:"10px"}}>
                                     <TextField size="small" fullWidth type={passwordView.type} {...register("password",{
                                         disabled: watch("email") === "",
                                         required:{
@@ -144,7 +144,7 @@ const LoginForm = () => {
                             </Grid>
                             <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
                                 <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center"}}>
-                                    <Button href="google-signin" variant="contained" size="medium" color="warning" startIcon={<Google/>} fullWidth>Google</Button>
+                                    <Button href="google-signin" variant="contained" size="medium" color="warning" startIcon={<Google/>} fullWidth></Button>
                                 </Stack>
                             </Grid>
                             <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>

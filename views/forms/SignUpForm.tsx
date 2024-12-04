@@ -96,14 +96,14 @@ const SignUpForm = () => {
                 {endpoint.current==="/signup" && 'SIGNUP BELOW'}
             </Typography>
         </Stack>
-        <Paper elevation={4} sx={{width:"80%", height:"auto", textAlign:"center", margin:"auto", marginTop:"30px"}}>
-            <Card component="section">
+        <Paper elevation={4} sx={{width:"90%", height:"auto", textAlign:"center", margin:"auto", marginTop:"30px"}}>
+            <Card id="section">
                 <CardMedia component="img" image={logo} height="150" alt="react logo" sx={{backgroundColor: "#000000"}}/>
                 <FormControl component="form" onSubmit={handleSubmit(onSub)} noValidate>
                     <CardContent>
                         <Grid container rowSpacing={1} columnSpacing={2}>
                             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"30px",paddingLeft:"30px"}}>
+                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"10px",paddingLeft:"10px"}}>
                                     <TextField fullWidth size="small" type="text" {...register("username",{
                                         required:{
                                             value: true,
@@ -123,7 +123,7 @@ const SignUpForm = () => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"30px",paddingLeft:"30px"}}>
+                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"10px",paddingLeft:"10px"}}>
                                     <TextField fullWidth size="small" type="email" {...register("email",{
                                         disabled: watch("username")==="",
                                         required:{
@@ -146,7 +146,7 @@ const SignUpForm = () => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"30px",paddingLeft:"30px"}}>
+                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"10px",paddingLeft:"10px"}}>
                                     <TextField fullWidth size="small" type={passwordView.type} {...register("password",{
                                         disabled: watch("email") === "",
                                         required:{
@@ -174,7 +174,7 @@ const SignUpForm = () => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"30px",paddingLeft:"30px"}}>
+                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"10px",paddingLeft:"10px"}}>
                                     <TextField fullWidth size="small" type={confirmPasswordView.type} {...register("confirmPassword",{
                                         disabled: watch("password")==="",
                                         required:{

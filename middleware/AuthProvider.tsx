@@ -26,8 +26,6 @@ const AuthProvider = ({children}:AuthProviderProps) => {
             // currentUser.current = user
             setCurrentUser(user)
         })
-        //cleanup
-        return ()=>{}
     })
     const setUserCurrent = (user:User)=>{
         setCurrentUser(user)

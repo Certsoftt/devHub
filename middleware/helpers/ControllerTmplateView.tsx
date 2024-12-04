@@ -20,8 +20,8 @@ const ControllerTmplateView = ({component:Component}:ControllerTemplateProp) => 
   const globalUserAuth = useRef<undefined | User>(undefined)
   const globalUserDB = useRef<undefined | DocumentData>(undefined)
   GetUser().then(user=>{
-    globalUserAuth.current = user?.dataFromAuth
-    globalUserDB.current = user?.dataFromDB
+    globalUserAuth.current = user?.UserAuth
+    globalUserDB.current = user?.UserDB
   })
   return (
     <Component userDataFromAuth={globalUserAuth.current} userDataFromDB={globalUserDB.current}/>
@@ -29,15 +29,16 @@ const ControllerTmplateView = ({component:Component}:ControllerTemplateProp) => 
 }
 
 const GetUser = async ()=>{
+  let UserAuth: User | undefined
+  let UserDB: DocumentData | undefined
   const user = useAuth()
   if(user && user.currentUser){
     const newDOCRef = doc(db, 'users',user.currentUser.uid)
     const snapshots = await getDoc(newDOCRef)
-    const dataFromAuth = user.currentUser
     if(snapshots.exists()){
-      const dataFromDB = snapshots.data()
-      console.log(dataFromAuth, dataFromDB)
-      return {dataFromAuth, dataFromDB}
+      UserAuth = user.currentUser
+      UserDB = snapshots.data()
+      return{UserAuth, UserDB}
     }
   }
 
