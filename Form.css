@@ -1,0 +1,81 @@
+/* body{
+    background: #e2c5c5 !important
+}
+main{
+        width: 90% !important;
+}
+form{
+    height: auto;
+    padding-top: 40px !important;
+}
+*/
+.spin{
+    animation: spin 1s infinite linear;
+}
+@keyframes spin {
+    from{
+        transform: scale(1) rotate(0deg)
+    }
+    to{
+        transform: scale(1) rotate(360deg)
+    }
+}
+main{
+    width: 90% !important;
+}
+div#section{
+    width: 100% !important;
+}
+@media (min-width: 1024px){
+    main{
+        width: 50% !important;
+    }
+    div#section{
+        width: 100% !important;
+    }
+}
+@media (min-width: 425px) and (max-width: 768px){
+    main{
+        width: 50% !important;
+    }
+    div#section{
+        width:100% !important;
+    }
+}
+@media (min-width: 376px) and (max-width: 425px){
+    main{
+        width: 90% !important;
+    }
+    div#section{
+        width:100% !important;
+    }
+    
+}
+@media (min-width: 320px) and (max-width: 375x){
+    main{
+        width: 90% !important;
+    }
+    div#section{
+        width:100% !important;
+    }
+    
+}
+@media (min-width: 0) and (max-width: 320px){
+    main{
+        width: 90% !important;
+    }
+    div#section{
+        width:100% !important;
+    }
+} 
+
+button#btn_login{
+    background-color:#348398 !important;
+}
+a{
+    text-decoration: none !important;
+    font-weight: 700;
+}
+button#btn_login a{
+    color: white !important;
+}
