@@ -3,15 +3,15 @@ import {getAuth} from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 const app = initializeApp({
-    apiKey: "AIzaSyB0yA3k-OU-lcr3aYQ0u1vgtDZaZuFTedA",
-    authDomain: "makemoreapp-development.firebaseapp.com",
-    projectId: "makemoreapp-development",
-    storageBucket: "makemoreapp-development.firebasestorage.app",
-    messagingSenderId: "833425836573",
-    appId: "833425836573:web:51f7c3eebf30b1ac0854f4",
-    measurementId: "G-P5ZCSFSWLJ",
+    apiKey: REACT_APP_API_KEY,
+    authDomain: REACT_APP_AUTH_DOMAIN,
+    projectId: REACT_APP_PROJECT_ID,
+    storageBucket: REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: REACT_APP_MESSAGING_SENDER_ID,
+    appId: REACT_APP_APP_ID,
+    measurementId: REACT_APP_MEASUREMENT_ID,
     //REALTIME DATABSE(firebase/database) NOT FIRESTORE(firebase/firestore)
-    databaseURL: "https://makemoreapp-development-default-rtdb.firebaseio.com/"
+    databaseURL: REACT_APP_DATABASE_URL
 })
 
 export const auth = getAuth(app)
