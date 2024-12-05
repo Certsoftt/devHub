@@ -6,6 +6,7 @@ type AuthProviderProps = {
     children: React.ReactNode
 }
 export type User = import("@firebase/auth").User
+export type DocumentData = import('@firebase/firestore').DocumentData
 type AuthContextType = { 
     setUserCurrent: (user: User) => void
     currentUser: User | null
