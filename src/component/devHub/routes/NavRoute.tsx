@@ -5,7 +5,6 @@ import RequireAuth from '../middleware/RequireAuth'
 import UserDashboard from '../views/template/user/dashboards/UserDashboard'
 // import ForgotEmail from '../views/forms/ForgotEmail'
 // import UpdateProfile from '../views/forms/UpdateProfileForm'
-import ControllerTmplateView from '../middleware/helpers/ControllerTmplateView'
 import NoAuth from '../middleware/NoAuth'
 import Fallback from '../views/layouts/Fallback'
 
@@ -21,7 +20,7 @@ const NavRoute = () => {
                 <Route path="/login" element={<React.Suspense fallback={<Fallback/>}><NoAuth><LoginForm/></NoAuth></React.Suspense>}/>
                 <Route path="/signup" element={<React.Suspense fallback={<Fallback/>}><NoAuth><SignUpForm/></NoAuth></React.Suspense>}/>
             </Route>
-            <Route path="/dashboard/:userId" element={<React.Suspense fallback={<Fallback/>}><RequireAuth><ControllerTmplateView component={UserDashboard}/></RequireAuth></React.Suspense>}/>
+            <Route path="/dashboard/:userId" element={<React.Suspense fallback={<Fallback/>}><RequireAuth><UserDashboard/></RequireAuth></React.Suspense>}/>
             {/* <Route path="/dashboard/update-profile/:userId" element={<React.Suspense fallback={<BounceLoader size={72} color="red" loading="true"/>}><RequireAuth><UpdateProfile/></RequireAuth></React.Suspense>}/> */}
             {/* <Route path="/forgot" element={<React.Suspense fallback={<BounceLoader size={72} color="red" loading="true"/>}><ForgotEmail/></React.Suspense>}/> */}
             {/* <Route path="/google-signin" element={<React.Suspense fallback={<BounceLoader size={72} color="red" loading="true"/>}><ForgotEmail/></React.Suspense>}/> */}
