@@ -9,6 +9,7 @@ import logo from '../../../../logo.svg'
 import { useAuth } from '../../middleware/AuthProvider'
 import {toast} from 'react-toastify'
 import {useNavigate} from 'react-router-dom'
+import ChatWidget from '../partials/ChatWidget'
 
 type PasswordSwitchType = {
     type: string
@@ -33,8 +34,13 @@ const passwordState: HandleView = {
         visibility: <VisibilityOff/>
     }
 }
+type GoogleUser = {
+    googleUser: string | null
+    setGoogleUser:React.Dispatch<React.SetStateAction<string>>
+}
 
 const LoginForm = () => {
+    const[googleUser, setGoogleUser] = useState<string | null>('')
     const navigate = useNavigate()
     const user = useAuth()
     const [passwordView, setPasswordView]=useState({type:"password",visibility:<Visibility/>} as PasswordSwitchType)
@@ -72,9 +78,17 @@ const LoginForm = () => {
     }
     const endpoint = useRef<string | null>(null)
     useEffect(()=>{
-        endpoint.current = window.location.pathname
+        endpoint.current = window.location.pathname;
+        setGoogleUser(localStorage.getItem('email'))
     })
-    
+    const handleGoogleSignIn = ()=>{
+        user?.googleSignIn().then(data=>{
+            localStorage.setItem('email', data.email!)
+            user.setUserCurrent(data)
+            toast.success("Login Successful",{position:"top-center"})
+            navigate(`/dashboard/${data.uid}`,{replace:true})
+        })
+    }
   return (
     <React.Fragment>
         <Stack spacing={2} sx={{justifyContent:"center",alignItems:"center"}}>
@@ -82,14 +96,14 @@ const LoginForm = () => {
                 {endpoint.current==="/login" && 'LOGIN BELOW'}
             </Typography>
         </Stack>
-        <Paper elevation={4} sx={{width:"80%", height:"auto", textAlign:"center", margin:"auto", marginTop:"30px"}}>
-            <Card>
+        <Paper elevation={4} sx={{width:"90%", height:"auto", textAlign:"center", margin:"auto", marginTop:"30px"}}>
+            <Card id="section">
                 <CardMedia component="img" image={logo} height="150" alt="react logo" sx={{backgroundColor: "#000000"}}/>
                 <FormControl component="form" onSubmit={handleSubmit(onSub)} noValidate>
                     <CardContent>
                         <Grid container rowSpacing={1} columnSpacing={1}>
                             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"30px",paddingLeft:"30px",paddingTop:"30px"}}>
+                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"10px",paddingLeft:"10px",paddingTop:"30px"}}>
                                     <TextField size="small" type="email" {...register("email",{
                                         required:{
                                             value: true,
@@ -106,7 +120,7 @@ const LoginForm = () => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"30px",paddingLeft:"30px"}}>
+                                <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center",paddingRight:"10px",paddingLeft:"10px"}}>
                                     <TextField size="small" fullWidth type={passwordView.type} {...register("password",{
                                         disabled: watch("email") === "",
                                         required:{
@@ -144,12 +158,12 @@ const LoginForm = () => {
                             </Grid>
                             <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
                                 <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center"}}>
-                                    <Button href="google-signin" variant="contained" size="medium" color="warning" startIcon={<Google/>} fullWidth>Google</Button>
+                                    <Button variant="contained" size="medium" color="warning" startIcon={<Google/>} fullWidth onClick={handleGoogleSignIn}></Button>
                                 </Stack>
                             </Grid>
                             <Grid item xs={4} sm={4} md={4} lg={4} xl={4}>
                                 <Stack spacing={2} direction="row" sx={{justifyContent: "center", alignItems: "center"}}>
-                                    <Button href="phone-signin" variant="contained" size="medium" color="info" startIcon={<PhoneAndroid/>} fullWidth>OTP</Button>
+                                    <Button href="otp" variant="contained" size="medium" color="info" startIcon={<PhoneAndroid/>} fullWidth>OTP</Button>
                                 </Stack>
                             </Grid>
                         </Grid>
