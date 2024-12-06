@@ -3,15 +3,17 @@ import {Link, Outlet} from 'react-router-dom'
 import {Paper, Stack,
 Divider, Typography,Card, CardContent,
 Grid, Button} from '@mui/material'
+import ChatWidget from './ChatWidget'
 
 const AuthPage = () => {
   return (
     <Paper component="main" elevation={4} sx={{width:"50%", height:"auto", textAlign:"center", margin:"auto", marginTop:"30px",paddingTop:"30px",backgroundColor:"#61dafb"}}>
+        <ChatWidget/>
         <Stack spacing={4} direction="column" 
         divider={<Divider orientation="horizontal" flexItem/>} 
         sx={{justifyContent:"center",alignItems:"center",backgroundColor:"#000000",paddingTop:"30px"}}>
             <Typography variant="h1" sx={{fontSize:"20px",fontWeight:500,color:"white"}}>Welcome To Makemore</Typography>
-            <Card>
+            <Card id="card">
                 <CardContent>
                     <Grid container rowSpacing={1} columnSpacing={2}>
                         <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
