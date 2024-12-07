@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Typography } from '@mui/material'
 import { DocumentData, useAuth, User } from '../../../../middleware/AuthProvider'
 import { doc, getDoc } from 'firebase/firestore'
@@ -7,8 +7,8 @@ import ChatWidget from '../../../partials/ChatWidget'
 
 
 const UserDashboard = () => {
-  const UserAuth = useRef<User | undefined>(undefined)
-  const UserDB = useRef<DocumentData | undefined>(undefined)
+  const [userAuth, setUserAuth] = useState({} as User)
+  const [userDB, setUserDB]  = useState({} as DocumentData)
   const user = useAuth();
   useEffect(()=>{
     (async ()=>{
@@ -16,8 +16,8 @@ const UserDashboard = () => {
         const newDOCRef = doc(db, 'users',user.currentUser.uid)
         const snapshots = await getDoc(newDOCRef)
         if(snapshots.exists()){
-          UserAuth.current = user.currentUser
-          UserDB.current = snapshots.data()
+          setUserAuth(user.currentUser)
+          setUserDB(snapshots.data())
         }
       }
     })()
@@ -25,11 +25,14 @@ const UserDashboard = () => {
   })
   return(
     <React.Fragment>
-      {(UserAuth.current && UserDB.current)? (
+      {(userAuth && userDB)? (
         <React.Fragment>
           <ChatWidget/>
+          <Typography variant="h2">
+            Welcome: {userDB.username}
+          </Typography>
           <Typography>
-            <span>Welcome: </span>{UserDB.current?.username}
+            Email: {userAuth.email}
           </Typography>
         </React.Fragment>
       ):(
